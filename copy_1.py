@@ -159,15 +159,15 @@ class Moto:
         self.ligado = False
 
     def info(self):
-        print(f'Marca: {self.marca}, Modelo: {self.modelo}, Cor: {self.cor}, Marcha: {self.marcha}, Ligada: {self.ligado}')
+       return(f'Marca: {self.marca}, Modelo: {self.modelo}, Cor: {self.cor}, Marcha: {self.marcha}, Ligada: {self.ligado}')
     
     def infomarcha(self):
-        print(Moto.nmarcha[Moto.marcha])
+        return(Moto.nmarcha[Moto.marcha])
 
 
     def passar_marcha(self, marcha):
         Moto.marcha = marcha
-        print(Moto.nmarcha[Moto.marcha])
+        return(Moto.nmarcha[Moto.marcha])
 
     def marchaacima(self):
         Moto.marcha +=1
