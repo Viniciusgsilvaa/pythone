@@ -98,24 +98,61 @@ Dada uma lista de strings, crie uma nova lista contendo apenas as strings que t�
 Crie uma matriz 3x3 e, em seguida, crie uma lista com os elementos dessa matriz."""
 
 
-impares = [x for x in range(1, 11) if x % 2 != 0]
-print(impares)
+# impares = [x for x in range(1, 11) if x % 2 != 0]
+# print(impares)
 
-listadepalavras = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
+# listadepalavras = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
 
-lc = [len(palavras) for palavras in listadepalavras]
-print(lc)
+# lc = [len(palavras) for palavras in listadepalavras]
+# print(lc)
 
-parele = [x**2 for x in range(1, 20) if x %2 == 0]
-print(parele)
+# parele = [x**2 for x in range(1, 20) if x %2 == 0]
+# print(parele)
 
-cons = [x for x in 'compreensao' if x in 'cmprns']
-print(cons)
+# cons = [x for x in 'compreensao' if x in 'cmprns']
+# print(cons)
 
-listadestring = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
+# listadestring = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
 
-nl = [x for x in listadestring if len(x) > 3]
-print(nl)
+# nl = [x for x in listadestring if len(x) > 3]
+# print(nl)
 
-matrix = [[x for x in range(1,4)] for x in range(1,4)]
-print(matrix)
+# matrix = [[x for x in range(1,4)] for x in range(1,4)]
+# print(matrix)
+
+"""
+Crie uma lista dos quadrados dos números pares de 0 a 9 usando compreensão de lista.
+
+Crie uma lista dos múltiplos de três de 1 a 20 usando compreensão de lista.
+
+Dada uma lista original, crie uma nova lista que seja uma cópia da original, mas com todos os números pares multiplicados por 2.
+
+Dada uma string, crie uma lista contendo apenas as letras maiúsculas da string.
+
+Crie uma lista dos números primos de 1 a 50 usando compreensão de lista.
+
+Dada uma matriz quadrada matriz, crie uma nova matriz que seja a transposta da matriz original usando compreensão de lista.
+
+Dada uma lista de palavras, crie uma nova lista contendo apenas as palavras que têm menos de 5 caracteres.
+
+Dadas duas listas a e b, crie uma lista contendo todos os pares (x, y) onde x é de a e y é de b.
+
+Dada uma string, crie uma lista contendo apenas os caracteres únicos na string, preservando a ordem original.
+
+Dada uma lista de números, crie uma nova lista contendo os números negativos.
+"""
+
+quad = [x**2 for x in range(10) if x % 2 == 0]
+print(quad)
+
+muttre = [x for x in range(1, 21) if x % 3 == 0]
+print(muttre)
+
+lis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+cop = [x*2 if x % 2 == 0 else x for x in lis]
+print(cop)
+
+a = 'UHoçjHOUHohHoiFGikHFu8viYF'
+uper = [letra for letra in a if letra.isupper()]
+print(uper)
+
