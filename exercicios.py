@@ -73,7 +73,7 @@ class Agenda:
         else:
             print('Posição inválida. Forneça um índice válido.')
 
-# Exemplo de uso:
+"""# Exemplo de uso:
 agenda = Agenda()
 
 agenda.armazenar_pessoa("João", 30, 175)
@@ -83,5 +83,39 @@ posicao_maria = agenda.busca_pessoa("Maria")
 print(f'A pessoa Maria está na posição {posicao_maria} da agenda.')
 
 agenda.imprime_agenda()
-agenda.imprime_pessoa(1)
+agenda.imprime_pessoa(1)"""
 
+"""Crie uma lista dos quadrados dos números ímpares de 1 a 10.
+
+Dada uma lista de palavras, crie uma nova lista contendo o comprimento de cada palavra.
+
+Dada uma lista de números, crie uma nova lista contendo apenas os números pares elevados ao quadrado.
+
+Crie uma lista de todas as letras da palavra "compreensao" que não são vogais.
+
+Dada uma lista de strings, crie uma nova lista contendo apenas as strings que têm mais de três caracteres.
+
+Crie uma matriz 3x3 e, em seguida, crie uma lista com os elementos dessa matriz."""
+
+
+impares = [x for x in range(1, 11) if x % 2 != 0]
+print(impares)
+
+listadepalavras = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
+
+lc = [len(palavras) for palavras in listadepalavras]
+print(lc)
+
+parele = [x**2 for x in range(1, 20) if x %2 == 0]
+print(parele)
+
+cons = [x for x in 'compreensao' if x in 'cmprns']
+print(cons)
+
+listadestring = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
+
+nl = [x for x in listadestring if len(x) > 3]
+print(nl)
+
+matrix = [[x for x in range(1,4)] for x in range(1,4)]
+print(matrix)
