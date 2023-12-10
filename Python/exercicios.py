@@ -156,3 +156,26 @@ a = 'UHoçjHOUHohHoiFGikHFu8viYF'
 uper = [letra for letra in a if letra.isupper()]
 print(uper)
 
+primos = [x for x in range(1, 51) if all(x % i != 0 for i in range(2, int(x**0.5) + 1))]
+print(primos)
+
+matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+transposta = [[linha[i] for linha in matriz] for i in range(len(matriz))]
+print(transposta)
+
+liststring = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
+novalis = [palavra for palavra in liststring if len(palavra) < 5]
+print(novalis)
+
+a = [1, 2, 3]
+b = ['a', 'b', 'c']
+pares = [(x, y) for x in a for y in b ]
+print(pares)
+
+string = "lnçaoddh.jrgRHNGSIOBNRG.NAÇPRKGJPAKRENGPKu"
+unicos = [unico for unico in string if string.count(unico) == 1]
+print(unicos)
+
+numeros = [-2, 0, 5, -8, 10, -3]
+negativa = [x for x in numeros if x < 0]
+print(negativa)
