@@ -1,4 +1,4 @@
-'''
+# Exercicios de POO
 class Pessoa:
 
     def __init__(self, nome, idade, altura):
@@ -9,40 +9,6 @@ class Pessoa:
     def informarcao(self):
         print(f'Nome: {self.__nome}, Idade: {self.__idade}, Altura: {self.__altura}')
 
-
-class Agenda(Pessoa):
-
-    contador = 1
-    agenda = []
-
-    def __init__(self, nome, idade, altura):
-        super().__init__(nome, idade, altura)
-        self.id = Agenda.contador
-        Agenda.contador +=1
-        Agenda.agenda.append(object)
-    
-    def localizacao(self, nome):
-        print(nome.id)
-    
-    def __str__(self):
-        return object
-
-
-
-p1 = Agenda('Gabriel', 40, 1.80)
-p2 = Agenda('Julia', 40, 1.80)
-p3 = Agenda('Roberto', 40, 1.80)
-p4 = Agenda('Giovana', 40, 1.80)
-p5 = Agenda('Barbara', 40, 1.80)
-p6 = Agenda('Vinicius', 40, 1.80)
-
-
-print(Agenda.agenda)
-
-# for n in Agenda.agenda:
-#     n.informacao()
-
-'''
 
 class Agenda:
     def __init__(self):
@@ -73,7 +39,7 @@ class Agenda:
         else:
             print('Posição inválida. Forneça um índice válido.')
 
-"""# Exemplo de uso:
+# Exemplo de uso:
 agenda = Agenda()
 
 agenda.armazenar_pessoa("João", 30, 175)
@@ -83,7 +49,10 @@ posicao_maria = agenda.busca_pessoa("Maria")
 print(f'A pessoa Maria está na posição {posicao_maria} da agenda.')
 
 agenda.imprime_agenda()
-agenda.imprime_pessoa(1)"""
+agenda.imprime_pessoa(1)
+
+
+# EXERCICIOS DE LIST COMPREHENSION
 
 """Crie uma lista dos quadrados dos números ímpares de 1 a 10.
 
@@ -98,27 +67,27 @@ Dada uma lista de strings, crie uma nova lista contendo apenas as strings que t�
 Crie uma matriz 3x3 e, em seguida, crie uma lista com os elementos dessa matriz."""
 
 
-# impares = [x for x in range(1, 11) if x % 2 != 0]
-# print(impares)
+impares = [x for x in range(1, 11) if x % 2 != 0]
+print(impares)
 
-# listadepalavras = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
+listadepalavras = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
 
-# lc = [len(palavras) for palavras in listadepalavras]
-# print(lc)
+lc = [len(palavras) for palavras in listadepalavras]
+print(lc)
 
-# parele = [x**2 for x in range(1, 20) if x %2 == 0]
-# print(parele)
+parele = [x**2 for x in range(1, 20) if x %2 == 0]
+print(parele)
 
-# cons = [x for x in 'compreensao' if x in 'cmprns']
-# print(cons)
+cons = [x for x in 'compreensao' if x in 'cmprns']
+print(cons)
 
-# listadestring = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
+listadestring = ['Ola', 'sou', 'um', 'teste', 'como', 'paralelepipedo', 'incostitucionalicimamente' ]
 
-# nl = [x for x in listadestring if len(x) > 3]
-# print(nl)
+nl = [x for x in listadestring if len(x) > 3]
+print(nl)
 
-# matrix = [[x for x in range(1,4)] for x in range(1,4)]
-# print(matrix)
+matrix = [[x for x in range(1,4)] for x in range(1,4)]
+print(matrix)
 
 """
 Crie uma lista dos quadrados dos números pares de 0 a 9 usando compreensão de lista.
@@ -179,3 +148,42 @@ print(unicos)
 numeros = [-2, 0, 5, -8, 10, -3]
 negativa = [x for x in numeros if x < 0]
 print(negativa)
+
+"""
+Números Ímpares ao Cubo:
+Crie uma lista dos cubos dos números ímpares de 1 a 10 usando compreensão de lista.
+
+Números Divisíveis por 3 e 5:
+Crie uma lista dos números de 1 a 30 que são divisíveis por 3 e 5 ao mesmo tempo.
+
+Invertendo Palavras:
+Dada uma lista de palavras, crie uma nova lista contendo cada palavra invertida.
+
+Múltiplos de 2 ou 3:
+Crie uma lista dos números de 1 a 20 que são múltiplos de 2 ou 3.
+
+Contagem de Vogais:
+Dada uma string, crie uma lista contendo tuplas onde o primeiro elemento é uma vogal e o segundo elemento é a contagem dessa vogal na string.
+
+Compreensão de Lista com Condições Aninhadas:
+Crie uma compreensão de lista que gere uma lista dos quadrados dos números ímpares no intervalo de 1 a 20, mas apenas para os números que não são divisíveis por 3.
+"""
+
+impa = [x**3 for x in range(1, 10) if x %2 != 0]
+print(impa)
+
+multcin = [x for x in (1, 30) if x % 3 == 0 and x % 5 == 0]
+print(multcin)
+
+palavras = ["python", "java", "c", "javascript", "html"]
+revp = [palavra[::-1] for palavra in palavras]
+print(revp)
+
+muit = [x for x in range(1, 21) if x %2 == 0 or x %3 == 0]
+print(muit)
+
+string = "exemplo de string"
+contvog = [(x, string.count(x)) for x in string]
+print(contvog)
+
+des = [x**2 for x in range(1, 21) if x %2 != 0 and x%3 == 0]
