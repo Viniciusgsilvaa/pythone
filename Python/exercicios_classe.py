@@ -111,23 +111,39 @@ class Biblioteca:
     
     def emprestar_livro(self, titulo):
         for livro in self.__livros:
-            if livro.titulo() == titulo and livro.status() == "Disponível":
+            if livro.titulo() == titulo and livro.status() == 'Disponível':
                 livro.disponivel_indisponivel()
-            else:
-                print(f'Livro: {titulo} esta Indisponível')
+                Biblioteca.total_de_livros -= 1
+                return
+
+        print(f'Livro: {titulo} esta Indisponível')
 
     def devolver_livro(self, titulo):
-        pass
+        for livro in self.__livros:
+            if livro.titulo() == titulo:
+                livro.disponivel_indisponivel()
+                Biblioteca.total_de_livros += 1
+    
+    def listar_livros(self):
+        for livro in self.__livros:
+            livro.info()
 
 livro1 = Livro("Dom Casmurro", "Machado de Assis", 1899, "Disponível")
 livro2 = Livro("1984", "George Orwell", 1949, "Disponível")
 
-livro1.info()
-
 biblioteca = Biblioteca()
 
 biblioteca.adicionar_livro(livro1)
+biblioteca.adicionar_livro(livro2)
+
+
+biblioteca.listar_livros()
 biblioteca.emprestar_livro("Dom Casmurro")
-livro1.info()
+biblioteca.emprestar_livro("1984")
+print(livro2.status())
+biblioteca.emprestar_livro("1984")
+biblioteca.devolver_livro('1984')
+print(livro2.status())
+biblioteca.listar_livros()
 
 
