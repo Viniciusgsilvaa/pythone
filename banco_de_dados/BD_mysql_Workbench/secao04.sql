@@ -27,3 +27,6 @@ INSERT INTO produtos (descricao, preco, codigo_tipo) VALUES ('Impr. Jato de Tint
 INSERT INTO produtos (descricao, preco, codigo_tipo) VALUES ('Impr. Laser ', '499.99', 2);
 
 select * from produtos;
+
+INSERT INTO produtos (descricao, preco, codigo_tipo) VALUES ('Notebook', '1500.99', 1);
+
