@@ -187,5 +187,3 @@ contvog = [(x, string.count(x)) for x in string]
 print(contvog)
 
 des = [x**2 for x in range(1, 21) if x %2 != 0 and x%3 == 0]
-
-#######
