@@ -32,7 +32,28 @@
         <li>Django</li>
         <li>HTML</li>
     </ul>
-    
-    <a href="pagina1.html">Pagina1.html</a>
+
+    <h1>Produtos</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td><a href="{% url 'produto' produto.id %}">{{ produto.nome }}</a></td>
+                <td>{{ produto.preco }}</td>
+            </tr>    
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h1></h1>
+
+    <a href="{% url 'contato' %}">Pagina1.html</a>
 </body>
 </html>
