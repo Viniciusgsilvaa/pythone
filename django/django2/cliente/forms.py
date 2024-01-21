@@ -1,6 +1,6 @@
 from django import forms
 from django.core.mail.message import EmailMessage
-
+from .models import Cliente
 
 class ClienteForm(forms.Form):
     nome = forms.CharField(label='Nome', max_length=100)
@@ -25,3 +25,11 @@ class ClienteForm(forms.Form):
         )
 
         mail.send()
+
+class CadastroModelForm(forms.ModelForm):
+    
+    class Meta:
+        model = Cliente
+        fields = ['nome', 'email', 'cpf', 'senha']
+
+    senha = forms.CharField(widget=forms.PasswordInput)

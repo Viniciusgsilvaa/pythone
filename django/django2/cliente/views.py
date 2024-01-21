@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import ClienteForm
+from .forms import ClienteForm, CadastroModelForm
 from django.contrib import messages
 
 
@@ -20,3 +20,21 @@ def cliente(request):
         'form': form
     } 
     return render(request, 'cliente.html', context)
+
+def cadastro(request):
+    if request.method == 'POST':
+        form = CadastroModelForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, 'Cadastro com Sucesso')
+        else:
+            messages.error(request, 'Erro ao se cadastrar')
+    else:
+        form = CadastroModelForm()
+    
+    context = {
+        'form': form
+    }
+
+    return render(request, 'cadastro.html', context)
