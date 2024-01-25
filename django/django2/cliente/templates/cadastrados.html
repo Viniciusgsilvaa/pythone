@@ -1,0 +1,43 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clites Cadastrados</title>
+    {% bootstrap_css %}
+</head>
+<body>
+    <div class="container">
+        <h1>Clientes Cadastrados</h1>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Cpf</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cadastro in cadastrados %}
+                    <tr>
+                        <td scope="row">{{ cadastro.id }}</td>
+                        <td scope="row">{{ cadastro.nome }}</td>
+                        <td scope="row">{{ cadastro.email }}</td>
+                        <td scope="row">{{ cadastro.cpf }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h1></h1>
+                <button>
+                    <a href="{% url 'index' %}">Voltar</a>
+                </button>
+    </div>
+    
+
+
+{% bootstrap_javascript jquery='full' %}
+</body>
+</html>

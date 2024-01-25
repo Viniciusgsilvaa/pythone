@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import ClienteForm, CadastroModelForm
 from django.contrib import messages
+from .models import Cliente
 
 
 def cliente(request):
@@ -21,6 +22,7 @@ def cliente(request):
     } 
     return render(request, 'cliente.html', context)
 
+
 def cadastro(request):
     if request.method == 'POST':
         form = CadastroModelForm(request.POST or None)
@@ -28,6 +30,7 @@ def cadastro(request):
             form.save()
 
             messages.success(request, 'Cadastro com Sucesso')
+            form = CadastroModelForm()
         else:
             messages.error(request, 'Erro ao se cadastrar')
     else:
@@ -38,3 +41,10 @@ def cadastro(request):
     }
 
     return render(request, 'cadastro.html', context)
+
+
+def cadastrados(request):
+    context = {
+        'cadastrados': Cliente.objects.all()
+    }
+    return render(request, 'cadastrados.html', context)
