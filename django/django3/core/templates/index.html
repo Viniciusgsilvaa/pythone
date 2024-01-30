@@ -110,77 +110,19 @@
         </div>
         <div class="row">
           <!-- Services item -->
+          {% for s in servicos %}
           <div class="col-md-6 col-lg-4 col-xs-12">
             <div class="services-item wow fadeInRight" data-wow-delay="0.3s">
               <div class="icon">
-                <i class="lni-cog"></i>
+                <i class="{{ s.icone }}"></i>
               </div>
               <div class="services-content">
-                <h3><a href="#">Easy To Used</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
+                <h3><a href="#">{{ s.servico }}</a></h3>
+                <p>{{ s.descricao }} </p>
               </div>
             </div>
           </div>
-          <!-- Services item -->
-          <div class="col-md-6 col-lg-4 col-xs-12">
-            <div class="services-item wow fadeInRight" data-wow-delay="0.6s">
-              <div class="icon">
-                <i class="lni-stats-up"></i>
-              </div>
-              <div class="services-content">
-                <h3><a href="#">Awesome Design</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
-              </div>
-            </div>
-          </div>
-          <!-- Services item -->
-          <div class="col-md-6 col-lg-4 col-xs-12">
-            <div class="services-item wow fadeInRight" data-wow-delay="0.9s">
-              <div class="icon">
-                <i class="lni-users"></i>
-              </div>
-              <div class="services-content">
-                <h3><a href="#">Easy To Customize</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
-              </div>
-            </div>
-          </div>
-          <!-- Services item -->
-          <div class="col-md-6 col-lg-4 col-xs-12">
-            <div class="services-item wow fadeInRight" data-wow-delay="1.2s">
-              <div class="icon">
-                <i class="lni-layers"></i>
-              </div>
-              <div class="services-content">
-                <h3><a href="#">UI/UX Design</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
-              </div>
-            </div>
-          </div>
-          <!-- Services item -->
-          <div class="col-md-6 col-lg-4 col-xs-12">
-            <div class="services-item wow fadeInRight" data-wow-delay="1.5s">
-              <div class="icon">
-                <i class="lni-mobile"></i>
-              </div>
-              <div class="services-content">
-                <h3><a href="#">App Development</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
-              </div>
-            </div>
-          </div>
-          <!-- Services item -->
-          <div class="col-md-6 col-lg-4 col-xs-12">
-            <div class="services-item wow fadeInRight" data-wow-delay="1.8s">
-              <div class="icon">
-                <i class="lni-rocket"></i>
-              </div>
-              <div class="services-content">
-                <h3><a href="#">User Friendly interface</a></h3>
-                <p>Ut maximus enim dolor. Aenean auctor risus eget tincidunt lobortis. Donec tincidunt bibendum gravida. </p>
-              </div>
-            </div>
-          </div>
+         {% endfor %}
         </div>
       </div>
     </section>
@@ -302,90 +244,28 @@
           <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
         </div>
         <div class="row">
+          {% for f in funcionarios %}
           <div class="col-lg-6 col-md-12 col-xs-12">
-            <!-- Team Item Starts -->
             <div class="team-item wow fadeInRight" data-wow-delay="0.2s">
               <div class="team-img">
-                <img class="img-fluid" src="{% static 'img/team/team-01.png' %}" alt="">
+                  <img class="img-fluid" src="{{ f.imagem.thumb.url }}" alt="{{ f.nome }}">
               </div>
               <div class="contetn">
                 <div class="info-text">
-                  <h3><a href="#">David Smith</a></h3>
-                  <p>Front-end Developer</p>
+                  <h3><a href="#">{{ f.nome }}</a></h3>
+                  <p>{{ f.cargo }}</p>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
+                <p>{{ f.bio }}</p>
                 <ul class="social-icons">
-                  <li><a href="#"><i class="lni-facebook-filled" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="lni-twitter-filled" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="lni-instagram-filled" aria-hidden="true"></i></a></li>
+                  <li><a href="{{ f.facebook }}"><i class="lni-facebook-filled" aria-hidden="true"></i></a></li>
+                  <li><a href="{{ f.x }}"><i class="lni-twitter-filled" aria-hidden="true"></i></a></li>
+                  <li><a href="{{ f.instagram }}"><i class="lni-instagram-filled" aria-hidden="true"></i></a></li>
                 </ul>
               </div>
             </div>
-            <!-- Team Item Ends -->
+          
           </div>
-          <div class="col-lg-6 col-md-12 col-xs-12">
-            <!-- Team Item Starts -->
-            <div class="team-item wow fadeInRight" data-wow-delay="0.4s">
-              <div class="team-img">
-                <img class="img-fluid" src="{% static 'img/team/team-02.png' %}" alt="">
-              </div>
-              <div class="contetn">
-                <div class="info-text">
-                  <h3><a href="#">ERIC PETERSON</a></h3>
-                  <p>Product Designer</p>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
-                <ul class="social-icons">
-                  <li><a href="#"><i class="lni-facebook-filled" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="lni-twitter-filled" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="lni-instagram-filled" aria-hidden="true"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- Team Item Ends -->
-          </div>
-          <div class="col-lg-6 col-md-12 col-xs-12">
-            <!-- Team Item Starts -->
-            <div class="team-item wow fadeInRight" data-wow-delay="0.6s">
-              <div class="team-img">
-                <img class="img-fluid" src="{% static 'img/team/team-03.png' %}" alt="">
-              </div>
-              <div class="contetn">
-                <div class="info-text">
-                  <h3><a href="#">DURWIN BABB</a></h3>
-                  <p>Lead Designer</p>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
-                <ul class="social-icons">
-                  <li><a href="#"><i class="lni-facebook-filled" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="lni-twitter-filled" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="lni-instagram-filled" aria-hidden="true"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- Team Item Ends -->
-          </div>
-          <div class="col-lg-6 col-md-12 col-xs-12">
-            <!-- Team Item Starts -->
-            <div class="team-item wow fadeInRight" data-wow-delay="0.8s">
-              <div class="team-img">
-                <img class="img-fluid" src="{% static 'img/team/team-04.png' %}" alt="">
-              </div>
-              <div class="contetn">
-                <div class="info-text">
-                  <h3><a href="#">MARIJN OTTE</a></h3>
-                  <p>Lead Designer</p>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
-                <ul class="social-icons">
-                  <li><a href="#"><i class="lni-facebook-filled" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="lni-twitter-filled" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="lni-instagram-filled" aria-hidden="true"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- Team Item Ends -->
-          </div>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -590,11 +470,12 @@
         <div class="row contact-form-area wow fadeInUp" data-wow-delay="0.3s">   
           <div class="col-lg-7 col-md-12 col-sm-12">
             <div class="contact-block">
-              <form id="contactForm">
+              <form id="contato" method="post" action="{% url 'index' %}">
+                {% csrf_token %}
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Name" required data-error="Please enter your name">
+                      <input type="text" class="form-control" id="nome" name="nome" placeholder="nome" required data-error="Please enter your name">
                       <div class="help-block with-errors"></div>
                     </div>                                 
                   </div>
@@ -606,13 +487,13 @@
                   </div>
                    <div class="col-md-12">
                     <div class="form-group">
-                      <input type="text" placeholder="Subject" id="msg_subject" class="form-control" required data-error="Please enter your subject">
+                      <input type="text" placeholder="Assunto" id="assunto" name="assunto" class="form-control" required data-error="Please enter your subject">
                       <div class="help-block with-errors"></div>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group"> 
-                      <textarea class="form-control" id="message" placeholder="Your Message" rows="7" data-error="Write your message" required></textarea>
+                      <textarea class="form-control" id="messagem" placeholder="Messagem" name="mensagem" rows="7" data-error="Write your message" required></textarea>
                       <div class="help-block with-errors"></div>
                     </div>
                     <div class="submit-button text-left">
