@@ -4,10 +4,11 @@ source = .
 omit =
     */__init__.py
     */settings.py
-    */manage.py
+    manage.py
     */wsgi.py
     */apps.py
     */urls.py
-    */admin.py/*
+    */admin.py
     */migrations/*
     */tests/*
+    asgi.py
