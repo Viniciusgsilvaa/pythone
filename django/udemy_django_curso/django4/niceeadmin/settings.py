@@ -77,14 +77,13 @@ WSGI_APPLICATION = 'niceeadmin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django3',
-        'USER': 'Vinicius',
-        'PASSWORD': '1b9a8k9a',
+        'NAME': 'niceadmin',
+        'USER': 'vinicius',
+        'PASSWORD': 'bdvinicius',
         'HOST': 'localhost',
         'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
