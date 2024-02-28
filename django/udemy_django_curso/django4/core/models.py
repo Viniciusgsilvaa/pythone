@@ -19,7 +19,7 @@ class Base(models.Model):
 
 class Portifolio(Base):
     cabecalio = models.CharField('Cabeçalio', max_length=50)
-    sublinha = models.CharField('Sublinha', max_length=15)
+    sublinha = models.CharField('Sublinha', max_length=30)
     sobre = models.CharField('Sobre', max_length=100)
     imagem = StdImageField('Imagem', upload_to=get_file_path, variations={'thumb': {'width': 600, 'height': 450, 'crop': True}})
 
