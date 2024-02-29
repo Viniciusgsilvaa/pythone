@@ -41,6 +41,7 @@ class Cargo(Base):
     def __str__(self):
         return self.cargo
 
+
 class Funcionario(Base):
     nome = models.CharField('Nome', max_length=30)
     cargo = models.ForeignKey('core.Cargo', verbose_name='Cargo', on_delete=models.CASCADE)
@@ -55,6 +56,7 @@ class Funcionario(Base):
     
     def __str__(self):
         return self.nome
+
 
 class Sobre(Base):
     data = models.CharField('Data', max_length=50)
