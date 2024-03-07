@@ -14,6 +14,7 @@ from pathlib import Path
 import dj_database_url
 
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -76,7 +77,7 @@ WSGI_APPLICATION = 'django4.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django4',
@@ -85,11 +86,9 @@ WSGI_APPLICATION = 'django4.wsgi.application'
         'HOST': 'localhost',
         'PORT': '5432'
     }
-}"""
-
-DATABASES = {
-    'default': dj_database_url.config()
 }
+
+"""DATABASES = dj_database_url.config()"""
 
 
 
@@ -117,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'us-west1'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -136,5 +135,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-LOGOUT_REDIRECT_URL = 'index'
