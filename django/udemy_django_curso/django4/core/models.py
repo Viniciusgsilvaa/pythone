@@ -63,6 +63,7 @@ class Sobre(Base):
     cabecalio = models.CharField('Cabeçalio', max_length=50)
     sobre = models.CharField('Sobre', max_length=100)
     imagem = StdImageField('Imagem', upload_to=get_file_path, variations={'thumb': {'width': 200, 'height': 200, 'crop':True}})
+    
 
     class Meta:
         verbose_name='Sobre'
