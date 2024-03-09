@@ -15,9 +15,16 @@
             </thead>
             <tbody>
                 {% for p in produtos %}
-                <th scope="col">{{ p.id }}</th>
-                <th scope="col">{{ p.nome }}</th>
-                <th scope="col">$ {{ p.preco|intcomma }}</th>
+                <tr>
+                    <th scope="row">{{ p.id }}</th>
+                    <th scope="row">{{ p.nome }}</th>
+                    <th scope="row">$ {{ p.preco|intcomma }}</th>
+                    <th scope="row">
+                        <a class="btn btn-warning" href="{% url 'upd_produto' p.pk %}">Editar</a>
+                        <a class="btn btn-danger" href="{% url 'del_produto' p.pk %}">Deletar</a>
+                    </th>
+                </tr>
+
                 {% endfor %}
             </tbody>
         </table>
