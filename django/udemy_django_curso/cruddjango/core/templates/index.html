@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+    <div class="row">
+        <h1>Produtos</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Ação</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in produtos %}
+                <th scope="col">{{ p.id }}</th>
+                <th scope="col">{{ p.nome }}</th>
+                <th scope="col">$ {{ p.preco|intcomma }}</th>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
