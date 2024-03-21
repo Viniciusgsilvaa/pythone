@@ -19,6 +19,7 @@ class Livro(Base):
     class Meta:
         verbose_name = 'Livro'
         verbose_name_plural = 'Livros'
+        ordering = ['id']
     
     def __str__(self):
         return self.titulo
@@ -35,6 +36,7 @@ class Avaliacoes(Base):
         verbose_name = 'Avaliação'
         verbose_name_plural = 'Avaliações'
         unique_together = ['email', 'titulo']
+        ordering = ['id']
 
     
     def __str__(self):

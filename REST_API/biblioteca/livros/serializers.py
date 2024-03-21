@@ -22,7 +22,10 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
 
 
 class LivroSerializer(serializers.ModelSerializer):
-
+    # avaliacoes = AvaliacaoSerializer(many=True, read_only=True)
+    
+    avaliacoes = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='avaliacoes-detail')
+    
     class Meta:
         model = Livro
         fields = (
@@ -32,6 +35,7 @@ class LivroSerializer(serializers.ModelSerializer):
             'descricao',
             'preco',
             'atualizacao',
-            'ativo'
+            'ativo',
+            'avaliacoes'
 
         )
