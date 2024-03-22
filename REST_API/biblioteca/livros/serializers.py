@@ -20,6 +20,10 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
             'ativo'
         )
 
+    def validate_avaliacao(self, valor):
+        if valor in range(1, 6):
+            return valor
+        raise serializers.ValidationError('A avaliacao precisa ser entre 1 a 5')
 
 class LivroSerializer(serializers.ModelSerializer):
     # avaliacoes = AvaliacaoSerializer(many=True, read_only=True)

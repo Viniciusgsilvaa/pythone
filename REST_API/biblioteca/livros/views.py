@@ -4,6 +4,8 @@ from rest_framework import generics, viewsets
 from rest_framework.generics import get_object_or_404
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework import permissions
+from .permissions import EhSuperUser
 
 
 """
@@ -44,6 +46,7 @@ API V2
 """
 
 class LivroViewSet(viewsets.ModelViewSet):
+    permission_classes = (EhSuperUser, permissions.DjangoModelPermissions, )
     queryset = Livro.objects.all()
     serializer_class = LivroSerializer
 
@@ -62,5 +65,5 @@ class LivroViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
         
 class AvaliacaoViewSet(viewsets.ModelViewSet):
-    queryset = Avaliacoes.objects.all
+    queryset = Avaliacoes.objects.all()
     serializer_class = AvaliacaoSerializer
