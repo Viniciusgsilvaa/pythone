@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fastapi"
+name = "fast_api"
 version = "0.1.0"
 description = ""
 authors = ["Vinicius Garcia <vinicius.garcia.dev@gmail.com>"]
@@ -7,6 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "3.12.*"
+fastapi = "^0.111.0"
 
 
 [build-system]
