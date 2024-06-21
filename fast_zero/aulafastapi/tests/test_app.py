@@ -23,3 +23,42 @@ def test_create_user(client):
         "email": "alice@example.com",
         "id": 1,
     }
+
+
+def test_read_users(client):
+    response = client.get("/users/")
+
+    assert response.status_code == HTTPStatus.OK
+    assert response.json() == {
+        "users": [
+            {
+                "username": "alice",
+                "email": "alice@example.com",
+                "id": 1,
+            }
+        ]
+    }
+
+
+def test_update_user(client):
+    response = client.put(
+        "/users/1",
+        json={
+            "password": "123",
+            "username": "alice2",
+            "email": "alice@example.com",
+            "id": 1,
+        },
+    )
+
+    assert response.json() == {
+        "username": "alice2",
+        "email": "alice@example.com",
+        "id": 2,
+    }
+
+
+def test_delete_user(client):
+    response = client.delete("/users/1")
+
+    assert response.json() == {"message": "User deleted"}
