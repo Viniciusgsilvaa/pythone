@@ -51,6 +51,18 @@ def test_update_user(client):
         },
     )
 
+    response_error = client.put(
+        "/users/9999",  # ID fora dos limites
+        json={
+            "username": "nonexistent",
+            "email": "nonexistent@example.com",
+            "password": "password",
+        },
+    )
+
+    assert response_error.status_code == HTTPStatus.NOT_FOUND
+    assert response_error.json() == {"detail": "User not Found"}
+
     assert response.json() == {
         "username": "alice2",
         "email": "alice@example.com",
@@ -60,5 +72,10 @@ def test_update_user(client):
 
 def test_delete_user(client):
     response = client.delete("/users/1")
+
+    response_error = client.delete("/users/9999")
+
+    assert response_error.status_code == HTTPStatus.NOT_FOUND
+    assert response_error.json() == {"detail": "User not Found"}
 
     assert response.json() == {"message": "User deleted"}
