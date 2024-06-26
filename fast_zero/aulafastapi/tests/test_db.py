@@ -1,23 +1,17 @@
-from sqlalchemy import create_engine, select
-from sqlalchemy.orm import Session
+from sqlalchemy import select
 
-from aulafastapi.models import User, table_registry
+from aulafastapi.models import User
 
 
-def test_create_user():
-    engine = create_engine('sqlite:///:memory:')
+def test_create_user(session):
+    user = User(
+        username="Vinicius", password="1234", email="vinicius@gmail.com"
+    )
 
-    table_registry.metadata.create_all(engine)
+    session.add(user)
+    session.commit()
+    result = session.scalar(
+        select(User).where(User.email == "vinicius@gmail.com")
+    )
 
-    with Session(engine) as session:
-        user = User(
-            username="Vinicius", password="1234", email="vinicius@gmail.com"
-        )
-
-        session.add(user)
-        session.commit()
-        result = session.scalar(
-            select(User).where(User.email == 'vinicius@gmail.com')
-        )
-
-    assert result.username == 'Vinicius'
+    assert result.username == "Vinicius"
