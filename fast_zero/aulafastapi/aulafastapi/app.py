@@ -1,14 +1,10 @@
 from http import HTTPStatus
 
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import Depends, FastAPI, HTTPException
+from sqlalchemy import select
 
-from sqlalchemy import  select
 from aulafastapi.database import get_session
 from aulafastapi.models import User
-
-
-
-
 from aulafastapi.schemas import (
     Message,
     UserDB,
@@ -28,24 +24,24 @@ def read_root():
 
 
 @app.post("/users/", status_code=HTTPStatus.CREATED, response_model=UserPublic)
-def create_user(user: UserSchema, session= Depends(get_session)):
-    db_user =session.scalar(
+def create_user(user: UserSchema, session=Depends(get_session)):
+    db_user = session.scalar(
         select(User).where(
             (User.username == user.username) | (User.email == user.email)
+        )
     )
-    )
-        
+
     if db_user:
         if db_user.username == user.username:
             raise HTTPException(
                 status_code=HTTPStatus.BAD_REQUEST,
-                detail='Email already exists'
-        )
-        elif db_user.emal == user.user.email:
+                detail="Email already exists",
+            )
+        elif db_user.email == user.email:
             raise HTTPException(
                 status_code=HTTPStatus.BAD_REQUEST,
-                detail='Email already exists'
-        )
+                detail="Email already exists",
+            )
 
     db_user = User(
         username=user.username, email=user.email, password=user.password
@@ -54,7 +50,8 @@ def create_user(user: UserSchema, session= Depends(get_session)):
     session.add(db_user)
     session.commit()
     session.refresh(db_user)
-    return db_user  
+    return db_user
+
 
 @app.get("/users/", response_model=UserList)
 def read_users():
