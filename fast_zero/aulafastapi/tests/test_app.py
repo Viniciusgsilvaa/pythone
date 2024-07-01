@@ -42,7 +42,7 @@ def test_read_users_with_user(client, user):
     assert response.json() == {"users": [user_schemas]}
 
 
-def test_update_user(client):
+def test_update_user(client, user):
     response = client.put(
         "/users/1",
         json={
@@ -68,11 +68,11 @@ def test_update_user(client):
     assert response.json() == {
         "username": "alice2",
         "email": "alice@example.com",
-        "id": 2,
+        "id": 1,
     }
 
 
-def test_delete_user(client):
+def test_delete_user(client, user):
     response = client.delete("/users/1")
 
     response_error = client.delete("/users/9999")
