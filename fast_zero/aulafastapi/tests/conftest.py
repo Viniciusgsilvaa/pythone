@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from aulafastapi.app import app
 from aulafastapi.database import get_session
-from aulafastapi.models import table_registry
+from aulafastapi.models import User, table_registry
 
 
 @pytest.fixture()
@@ -33,3 +33,13 @@ def session():
         yield session
 
     table_registry.metadata.drop_all(engine)
+
+
+@pytest.fixture()
+def user(session):
+    user = User(username="Test", email="test@test.com", password="testtest")
+    session.add(user)
+    session.commit()
+    session.refresh(user)
+
+    return user

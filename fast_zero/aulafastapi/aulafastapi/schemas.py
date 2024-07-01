@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr  # type: ignore
+from pydantic import BaseModel, ConfigDict, EmailStr  # type: ignore
 
 
 class Message(BaseModel):
@@ -19,6 +19,7 @@ class UserPublic(BaseModel):
     id: int
     username: str
     email: EmailStr
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UserList(BaseModel):
