@@ -1,6 +1,7 @@
 from http import HTTPStatus
 
 from fastapi import Depends, FastAPI, HTTPException
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -12,6 +13,7 @@ from aulafastapi.schemas import (
     UserPublic,
     UserSchema,
 )
+from aulafastapi.security import get_password_hash
 
 app = FastAPI()
 
@@ -42,7 +44,9 @@ def create_user(user: UserSchema, session=Depends(get_session)):
             )
 
     db_user = User(
-        username=user.username, email=user.email, password=user.password
+        username=user.username,
+        email=user.email,
+        password=get_password_hash(user.password),
     )
 
     session.add(db_user)
@@ -71,7 +75,7 @@ def update_user(
 
     db_user.email = user.email
     db_user.username = user.username
-    db_user.password = user.password
+    db_user.password = get_password_hash(user.password)
 
     session.commit()
     session.refresh(db_user)
@@ -91,3 +95,13 @@ def delete_user(user_id: int, session: Session = Depends(get_session)):
     session.commit()
 
     return {"message": "User deleted"}
+
+
+@app.post('/token')
+def login_for_access_token(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    session: Session = Depends(get_session)
+):
+    user = session.scalar(
+        select(User).where(User.name == form_data.username)
+    )

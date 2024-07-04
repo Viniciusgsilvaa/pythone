@@ -8,6 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "3.12.*"
 pydantic-settings = "^2.3.4"
+pwdlib = {extras = ["argon2"], version = "^0.2.0"}
+python-multipart = "^0.0.9"
 
 
 [tool.poetry.group.dev.dependencies]

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, EmailStr  # type: ignore
+from pydantic import BaseModel, ConfigDict, EmailStr  
 
 
 class Message(BaseModel):
