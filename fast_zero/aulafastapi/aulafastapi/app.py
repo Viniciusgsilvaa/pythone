@@ -9,11 +9,12 @@ from aulafastapi.database import get_session
 from aulafastapi.models import User
 from aulafastapi.schemas import (
     Message,
+    Token,
     UserList,
     UserPublic,
     UserSchema,
 )
-from aulafastapi.security import get_password_hash
+from aulafastapi.security import get_password_hash, verify_password
 
 app = FastAPI()
 
@@ -97,11 +98,14 @@ def delete_user(user_id: int, session: Session = Depends(get_session)):
     return {"message": "User deleted"}
 
 
-@app.post('/token')
+@app.post("/token", response_model=Token)
 def login_for_access_token(
     form_data: OAuth2PasswordRequestForm = Depends(),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
-    user = session.scalar(
-        select(User).where(User.name == form_data.username)
-    )
+    user = session.scalar(select(User).where(User.email == form_data.username))
+
+    if not user or not verify_password(form_data.password, user.password):
+        raise HTTPException(
+            status_code=400, detail="Incorrect email or password"
+        )
