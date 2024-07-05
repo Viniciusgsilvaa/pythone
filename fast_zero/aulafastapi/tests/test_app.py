@@ -42,9 +42,10 @@ def test_read_users_with_user(client, user):
     assert response.json() == {"users": [user_schemas]}
 
 
-def test_update_user(client, user):
+def test_update_user(client, user, token):
     response = client.put(
-        "/users/1",
+        f"/users/{user.id}",
+        headers={"Authorization": f"Bearer {token}"},
         json={
             "password": "123",
             "username": "alice2",
