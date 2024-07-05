@@ -103,6 +103,8 @@ def delete_user(
     session.delete(current_user)
     session.commit()
 
+    return {"message": "User deleted"}
+
 
 @app.post("/token", response_model=Token)
 def login_for_access_token(

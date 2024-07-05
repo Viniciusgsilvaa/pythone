@@ -61,7 +61,7 @@ def get_current_user(
     except PyJWTError:
         raise credentials_exception
 
-    user = session.scalar(select(User).wherer(User.email == username))
+    user = session.scalar(select(User).where(User.email == username))
 
     if not user:
         raise credentials_exception
