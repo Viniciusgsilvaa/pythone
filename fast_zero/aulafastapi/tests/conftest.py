@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from aulafastapi.app import app
 from aulafastapi.database import get_session
 from aulafastapi.models import User, table_registry
+from aulafastapi.security import get_password_hash
 
 
 @pytest.fixture()
@@ -37,9 +38,13 @@ def session():
 
 @pytest.fixture()
 def user(session):
-    user = User(username="Test", email="test@test.com", password="testtest")
+    pwd = "testtest"
+    user = User(
+        username="Test", email="test@test.com", password=get_password_hash(pwd)
+    )
     session.add(user)
     session.commit()
     session.refresh(user)
+    user.clean_password = pwd
 
     return user

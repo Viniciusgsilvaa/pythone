@@ -1424,6 +1424,17 @@ files = [
 ]
 
 [[package]]
+name = "tzdata"
+version = "2024.1"
+description = "Provider of IANA time zone data"
+optional = false
+python-versions = ">=2"
+files = [
+    {file = "tzdata-2024.1-py2.py3-none-any.whl", hash = "sha256:9068bc196136463f5245e51efda838afa15aaeca9903f49050dfa2679db4d252"},
+    {file = "tzdata-2024.1.tar.gz", hash = "sha256:2674120f8d891909751c38abcdfd386ac0a5a1127954fbc332af6b5ceae07efd"},
+]
+
+[[package]]
 name = "ujson"
 version = "5.10.0"
 description = "Ultra fast JSON encoder and decoder for Python"
@@ -1750,4 +1761,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "3.12.*"
-content-hash = "a3412931069f2cbbaea5c01cf4806af3514a04fd1c0a9ac7c021355402f1e4c5"
+content-hash = "a8c2e608cb0ef459e00dfb604a8d48c6cc270d705740c03e3327e1b74a8dcf38"

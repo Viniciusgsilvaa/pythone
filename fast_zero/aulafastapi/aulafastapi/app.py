@@ -14,7 +14,12 @@ from aulafastapi.schemas import (
     UserPublic,
     UserSchema,
 )
-from aulafastapi.security import get_password_hash, verify_password
+from aulafastapi.security import (
+    create_access_token,
+    get_current_user,
+    get_password_hash,
+    verify_password,
+)
 
 app = FastAPI()
 
@@ -66,7 +71,10 @@ def read_users(
 
 @app.put("/users/{user_id}", response_model=UserPublic)
 def update_user(
-    user_id: int, user: UserSchema, session: Session = Depends(get_session)
+    user_id: int,
+    user: UserSchema,
+    session: Session = Depends(get_session),
+    current_user=Depends(get_current_user),
 ):
     db_user = session.scalar(select(User).where(User.id == user_id))
     if not db_user:
@@ -85,7 +93,11 @@ def update_user(
 
 
 @app.delete("/users/{user_id}", response_model=Message)
-def delete_user(user_id: int, session: Session = Depends(get_session)):
+def delete_user(
+    user_id: int,
+    session: Session = Depends(get_session),
+    current_user=Depends(get_current_user),
+):
     db_user = session.scalar(select(User).where(User.id == user_id))
     if not db_user:
         raise HTTPException(
@@ -109,3 +121,7 @@ def login_for_access_token(
         raise HTTPException(
             status_code=400, detail="Incorrect email or password"
         )
+
+    access_token = create_access_token(data={"sub": user.email})
+
+    return {"access_token": access_token, "token_type": "Bearer"}
