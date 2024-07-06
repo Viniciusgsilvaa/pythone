@@ -14,7 +14,7 @@ from aulafastapi.database import get_session
 from aulafastapi.models import User
 
 pwd_context = PasswordHash.recommended()
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 SECRET_KEY = "your-secret-key"
 ALGORITHM = "HS256"
