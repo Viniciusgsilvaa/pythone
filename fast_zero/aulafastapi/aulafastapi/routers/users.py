@@ -38,7 +38,9 @@ def update_user(
     user: UserSchema,
 ):
     if current_user.id != user_id:
-        raise HTTPException(status_code=400, detail="Not enough permission")
+        raise HTTPException(
+            status_code=HTTPStatus.FORBIDDEN, detail="Not enough permission"
+        )
 
     current_user.email = user.email
     current_user.username = user.username
@@ -90,7 +92,7 @@ def delete_user(
 ):
     if current_user.id != user_id:
         raise HTTPException(
-            status_code=HTTPStatus.BAD_REQUEST, detail="Not enough permission"
+            status_code=HTTPStatus.FORBIDDEN, detail="Not enough permission"
         )
 
     session.delete(current_user)
