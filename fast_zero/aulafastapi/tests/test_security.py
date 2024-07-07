@@ -15,18 +15,6 @@ def test_jwt():
     assert result["exp"]
 
 
-def test_get_token(client, user):
-    response = client.post(
-        "/token",
-        data={"username": user.email, "password": user.clean_password},
-    )
-
-    token = response.json()
-    assert response.status_code == HTTPStatus.OK
-    assert token["token_type"] == "Bearer"
-    assert "access_token" in token
-
-
 def test_jwt_invalid_token(client, user):
     response = client.delete(
         f"/users/{user.id}", headers={"Authorization": "Bearer token-invalido"}

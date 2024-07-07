@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
@@ -15,22 +16,26 @@ from aulafastapi.schemas import (
 from aulafastapi.security import get_current_user, get_password_hash
 
 router = APIRouter(prefix="/users", tags=["users"])
+T_Session = Annotated[Session, Depends(get_session)]
+T_CurrentUser = Annotated[User, Depends(get_current_user)]
 
 
-@router.get("/users/", response_model=UserList)
+@router.get("/", response_model=UserList)
 def read_users(
-    limit: int = 10, offset: int = 0, session: Session = Depends(get_session)
+    session: T_Session,
+    limit: int = 10,
+    offset: int = 0,
 ):
     user = session.scalars(select(User).limit(limit).offset(offset))
     return {"users": user}
 
 
-@router.put("/users/{user_id}", response_model=UserPublic)
+@router.put("/{user_id}", response_model=UserPublic)
 def update_user(
+    session: T_Session,
+    current_user: T_CurrentUser,
     user_id: int,
     user: UserSchema,
-    session: Session = Depends(get_session),
-    current_user=Depends(get_current_user),
 ):
     if current_user.id != user_id:
         raise HTTPException(status_code=400, detail="Not enough permission")
@@ -45,10 +50,8 @@ def update_user(
     return current_user
 
 
-@router.post(
-    "/users/", status_code=HTTPStatus.CREATED, response_model=UserPublic
-)
-def create_user(user: UserSchema, session=Depends(get_session)):
+@router.post("/", status_code=HTTPStatus.CREATED, response_model=UserPublic)
+def create_user(session: T_Session, user: UserSchema):
     db_user = session.scalar(
         select(User).where(
             (User.username == user.username) | (User.email == user.email)
@@ -79,11 +82,11 @@ def create_user(user: UserSchema, session=Depends(get_session)):
     return db_user
 
 
-@router.delete("/users/{user_id}", response_model=Message)
+@router.delete("/{user_id}", response_model=Message)
 def delete_user(
+    session: T_Session,
+    current_user: T_CurrentUser,
     user_id: int,
-    session: Session = Depends(get_session),
-    current_user=Depends(get_current_user),
 ):
     if current_user.id != user_id:
         raise HTTPException(
