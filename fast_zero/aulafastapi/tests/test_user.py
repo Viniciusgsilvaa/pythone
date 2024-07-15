@@ -103,9 +103,9 @@ def test_update_user(client, user, token):
     }
 
 
-def test_error_update_user(client, user, token):
+def test_error_update_user(client, user, other_user, token):
     response_error = client.put(
-        f"/users/{user.id + 9999}",  # ID fora dos limites
+        f"/users/{other_user.id}",  # ID fora dos limites
         headers={"Authorization": f"Bearer {token}"},
         json={
             "username": "nonexistent",
@@ -132,9 +132,9 @@ def test_delete_user(client, user, token):
     assert response.json() == {"message": "User deleted"}
 
 
-def test_delete_wrong_user(client, user, token):
+def test_delete_wrong_user(client, other_user, token):
     response = client.delete(
-        f"/users/{user.id + 1}",
+        f"/users/{other_user.id}",
         headers={"Authorization": f"Bearer {token}"},
     )
 
