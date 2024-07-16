@@ -103,7 +103,7 @@ def test_update_user(client, user, token):
     }
 
 
-def test_error_update_user(client, user, other_user, token):
+def test_error_update_user(client, other_user, token):
     response_error = client.put(
         f"/users/{other_user.id}",  # ID fora dos limites
         headers={"Authorization": f"Bearer {token}"},
