@@ -1,4 +1,5 @@
 import factory
+import factory.fuzzy
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import StaticPool, create_engine
@@ -6,8 +7,18 @@ from sqlalchemy.orm import Session
 
 from aulafastapi.app import app
 from aulafastapi.database import get_session
-from aulafastapi.models import User, table_registry
+from aulafastapi.models import Todo, TodoState, User, table_registry
 from aulafastapi.security import get_password_hash
+
+
+class TodoFactory(factory.Factory):
+    class Meta:
+        model = Todo
+
+    title = factory.Faker("text")
+    description = factory.Faker("text")
+    state = factory.fuzzy.FuzzyChoice(TodoState)
+    user_id = 1
 
 
 @pytest.fixture()

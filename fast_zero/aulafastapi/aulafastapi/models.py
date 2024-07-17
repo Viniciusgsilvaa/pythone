@@ -11,7 +11,7 @@ class TodoState(str, Enum):
     draft = "draft"
     todo = "todo"
     doing = "doing"
-    done = "doine"
+    done = "done"
     trash = "trash"
 
 
