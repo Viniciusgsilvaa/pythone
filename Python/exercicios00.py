@@ -1,7 +1,7 @@
 """
 Two red beads are placed between every two blue beads. There are N blue beads. After looking at the arrangement below work out the number of red beads.
 
-@ @@ @ @@ @ @@ @ @@ @ @@ @
+@ @@ @ @@ @ @@ @ @@ @ @@ @ def
 
 Implement count_red_beads(n) (in PHP count_red_beads($n); in Java, Javascript, TypeScript, C, C++ countRedBeads(n)) so that it returns the number of red beads.
 If there are less than 2 blue beads return 0.
@@ -51,3 +51,33 @@ Return true if you're better, else false!
 
 def better_than_average(c, yp):
     return sum(c) / len(c) < yp
+
+"""
+Write a function, isItLetter or is_it_letter or IsItLetter, which tells us if a given character is a letter or not.
+"""
+
+def is_it_letter(s):
+    return s.isalpha()
+
+"""
+There is an array with some numbers. All numbers are equal except for one. Try to find it!
+
+find_uniq([ 1, 1, 1, 2, 1, 1 ]) == 2
+find_uniq([ 0, 0, 0.55, 0, 0 ]) == 0.55
+It’s guaranteed that array contains at least 3 numbers.
+
+The tests contain some very huge arrays, so think about performance.
+
+This is the first kata in series:
+
+Find the unique number (this kata)
+Find the unique string
+Find The Unique
+"""
+
+def find_uniq(arr):
+    for n in arr:
+        if arr.count(n) == 1:
+            return n
+
+
