@@ -165,3 +165,51 @@ def whatday(num):
         return "Wrong, please enter a number between 1 and 7"
     return days[num]
 
+"""
+A cake is sliced with n straight lines. Your task is to calculate the maximum number of pieces the cake can have.
+
+Example
+For n = 0, the output should be 1.
+
+For n = 1, the output should be 2.
+
+For n = 2, the output should be 4.
+
+For n = 3, the output should be 7.
+
+Input/Output
+[input] integer n
+0 ≤ n ≤ 10000
+
+[output] an integer
+The maximum number of pieces the sliced cake can have.
+"""
+
+def cake_slice(n):
+    return n*(n+1)/2 +1
+
+"""
+Write a function named first_non_repeating_letter† that takes a string input, and returns the first character that is not repeated anywhere in the string.
+
+For example, if given the input 'stress', the function should return 't', since the letter t only occurs once in the string, and occurs first in the string.
+
+As an added challenge, upper- and lowercase letters are considered the same character, but the function should return the correct case for the initial letter. For example, the input 'sTreSS' should return 'T'.
+
+If a string contains all repeating characters, it should return an empty string ("");
+
+† Note: the function is called firstNonRepeatingLetter for historical reasons, but your function should handle any Unicode character.
+"""
+
+def first_non_repeating_letter(s):
+    a = list(s.lower())
+    x = 0
+    c = 0
+    for n in a:
+        c += 1
+        if a.count(n) == 1:
+            x+=1
+            break
+    if x== 0:
+        return ''
+    return s[c-1]
+
