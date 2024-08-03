@@ -213,3 +213,15 @@ def first_non_repeating_letter(s):
         return ''
     return s[c-1]
 
+"""
+Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+
+move_zeros([1, 0, 1, 2, 
+"""
+
+def move_zeros(lst):
+    nz = [n for n in lst if n != 0]
+    cz = lst.count(0)
+    nz.extend([0] * cz)
+    return nz
+
