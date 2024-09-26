@@ -225,3 +225,12 @@ def move_zeros(lst):
     nz.extend([0] * cz)
     return nz
 
+
+def verificar_numero(n):
+    if n == 0:
+        return 'Zero'
+    elif n % 2 == 0:
+        return 'Par'
+    return 'Impar'
+
+print(verificar_numero(0))
