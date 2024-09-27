@@ -233,4 +233,42 @@ def verificar_numero(n):
         return 'Par'
     return 'Impar'
 
-print(verificar_numero(0))
+
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+num_par_mult = [numero * 2 for numero in numeros if numero % 2 == 0]
+
+"""
+. Verificação de Palíndromos
+Escreva uma função chamada verificar_palindromo que recebe uma string e retorna True se ela for um palíndromo (a string lida de trás para frente é igual à string original) e False caso contrário.
+"""
+
+def verificar_palindromo(string):
+    return string == string[::-1]
+
+print(verificar_palindromo("recrinircer"))
+
+
+"""
+2. Soma Recursiva
+Implemente uma função recursiva chamada soma_recursiva que recebe uma lista de números e retorna a soma de todos os elementos da lista. Não use loops!
+"""
+
+def soma_recursiva(lista):
+    return sum(lista)
+
+"""3. Remover Duplicatas de uma Lista
+Crie uma função chamada remover_duplicatas que recebe uma lista de números e retorna uma nova lista sem elementos duplicados, mantendo a ordem original.
+"""
+
+
+def remover_duplicatas(lista):
+    lista1 = []
+
+    for n in lista:
+        if n not in lista1:
+            lista1.append(n)
+    return lista1
+
+print(remover_duplicatas([1, 2, 3, 1, 2, 4, 5]))  # Saída: [1, 2, 3, 4, 5]
+print(remover_duplicatas([7, 6, 5, 8, 10, 7, 7, 8, 9]))  # Saída: [7, 8, 9]
