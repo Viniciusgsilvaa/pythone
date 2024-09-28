@@ -246,8 +246,6 @@ Escreva uma função chamada verificar_palindromo que recebe uma string e retorn
 def verificar_palindromo(string):
     return string == string[::-1]
 
-print(verificar_palindromo("recrinircer"))
-
 
 """
 2. Soma Recursiva
@@ -261,7 +259,6 @@ def soma_recursiva(lista):
 Crie uma função chamada remover_duplicatas que recebe uma lista de números e retorna uma nova lista sem elementos duplicados, mantendo a ordem original.
 """
 
-
 def remover_duplicatas(lista):
     lista1 = []
 
@@ -270,5 +267,62 @@ def remover_duplicatas(lista):
             lista1.append(n)
     return lista1
 
-print(remover_duplicatas([1, 2, 3, 1, 2, 4, 5]))  # Saída: [1, 2, 3, 4, 5]
-print(remover_duplicatas([7, 6, 5, 8, 10, 7, 7, 8, 9]))  # Saída: [7, 8, 9]
+
+"""
+Criar um dicionário de frutas e preços
+Crie um dicionário onde as chaves são os nomes de frutas e os valores são seus preços. Escreva uma função que recebe o nome de uma fruta e retorna seu preço. Se a fruta não estiver no dicionário, retorne uma mensagem dizendo que a fruta não foi encontrada.
+"""
+
+frutas = {'banana': 1.75, 'laranja': 2.99, 'pesego': 1.99}
+
+def preco_fruta(fruta):
+    if fruta in frutas:
+        return frutas[fruta]
+    return "fruta nao encontrada"
+    
+
+"""
+Dada uma lista de palavras, crie um dicionário que conta quantas vezes cada palavra aparece.
+"""
+
+palavras = ["gato", "cachorro", "gato", "pássaro", "gato", "cachorro"]
+
+def contador(lista):
+    valores_contados = {}
+    for dado in lista:
+        if dado in valores_contados:
+            valores_contados[dado] += 1
+        else:
+            valores_contados[dado] = 1
+
+    return valores_contados
+
+"""
+Intermediário: Tradutor simples
+Crie um dicionário que funcione como um tradutor inglês-português. Escreva uma função que recebe uma palavra em inglês e retorna sua tradução em português. Se a palavra não existir no dicionário, retorne "Palavra não encontrada".
+"""
+
+tradutor = {
+    "dog": "cachorro",
+    "cat": "gato",
+    "bird": "pássaro"
+}
+
+def traducao(palavra):
+    return tradutor.get(palavra, "Palavra não encontrada")
+
+"""
+Crie um dicionário que armazena as notas de alunos. Escreva uma função que calcula a média das notas de um aluno específico. Se o aluno não existir, retorne uma mensagem de erro.
+"""
+
+alunos = {
+    "João": [7, 8, 9],
+    "Maria": [10, 9, 8],
+    "Pedro": [6, 7, 8]
+}
+
+def media_aluno(nome):
+    if nome in alunos:
+        return sum(alunos[nome]) / len(alunos[nome])
+    return 'Aluno nao existe'
+print(media_aluno('Maria'))
