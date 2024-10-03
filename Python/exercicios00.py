@@ -325,4 +325,64 @@ def media_aluno(nome):
     if nome in alunos:
         return sum(alunos[nome]) / len(alunos[nome])
     return 'Aluno nao existe'
-print(media_aluno('Maria'))
+
+
+
+"""
+Crie uma função chamada adicionar_elemento que recebe uma lista e um valor. A função deve adicionar o valor ao final da lista, se ele ainda não estiver presente.
+"""
+
+def adicionar_elemento(lista, valor):
+    return lista.append(valor)
+
+
+lista_exemplo = [1, 2, 3]
+adicionar_elemento(lista_exemplo, 4)
+print(lista_exemplo)  # Saída: [1, 2, 3, 4]
+
+
+"""
+Crie uma função que recebe uma lista de números e a ordena de forma crescente e depois de forma decrescente.
+"""
+
+def ordenar_lista(lista):
+    lista.sort()
+    print(lista)
+
+# Testes:
+numeros = [5, 3, 8, 6, 2]
+
+"""
+Crie uma função que recebe uma lista e retorna uma nova lista sem elementos duplicados.
+"""
+
+def remover_duplicatas(lista):
+    return sorted(set(lista))
+
+# Testes:
+lista_com_duplicatas = [1, 2, 2, 3, 4, 4, 5]
+print(remover_duplicatas(lista_com_duplicatas))  # Saída esperada: [1, 2, 3, 4, 5]
+
+
+"""
+Crie uma função que recebe uma tupla e um valor, e retorna True se o valor estiver na tupla, ou False caso contrário.
+"""
+
+def verificar_valor(tupla, valor):
+    return valor in tupla
+
+# Testes:
+minha_tupla = (10, 20, 30, 40)
+
+
+"""
+Crie uma função que, dada uma lista de números, encontre o segundo maior e o segundo menor número.
+"""
+
+def segundo_maior_menor(lista):
+    lista.sort()
+    return f'segundo menor: {lista[1]}, segundo maior: {lista[-2]} '
+
+# Testes:
+numeros = [12, 45, 2, 30, 10, 22]
+print(segundo_maior_menor(numeros))  # Saída esperada: (segundo menor: 10, segundo maior: 30) 
