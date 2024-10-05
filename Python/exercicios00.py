@@ -385,4 +385,36 @@ def segundo_maior_menor(lista):
 
 # Testes:
 numeros = [12, 45, 2, 30, 10, 22]
-print(segundo_maior_menor(numeros))  # Saída esperada: (segundo menor: 10, segundo maior: 30) 
+
+
+
+"""
+Exercício 2: Somatório dos Números Divisíveis por 3 e 5
+Escreva uma função que receba um número inteiro positivo n e retorne a soma de todos os números entre 1 e n que são divisíveis por 3 ou 5.
+"""
+
+def soma_divisiveis(n):
+    """result = []
+    for v in range(n+1):
+        if v %3 == 0 or v %5 == 0:
+            result.append(v)
+    return sum(result)"""
+    return sum([v for v in range(n+1) if v % 3 == 0 or v % 5 == 0])
+    
+
+
+# Teste
+
+"""
+Exercício 3: Contador de Caracteres Mais Frequente
+Crie uma função que receba uma string e retorne o caractere que aparece com mais frequência. Se houver empate, retorne o que aparece primeiro.
+"""
+
+def caractere_mais_frequente(s):
+    result = {}
+    for n in list(s):
+        if n  in result:
+            result[n] += 1
+        else:
+            result[n] = 1
+    return max(result, key=result.get)
