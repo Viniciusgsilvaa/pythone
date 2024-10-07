@@ -418,3 +418,43 @@ def caractere_mais_frequente(s):
         else:
             result[n] = 1
     return max(result, key=result.get)
+
+
+"""
+use maps
+"""
+
+def quadrado(x):
+    return x ** 2
+
+numeros = [1, 2, 3, 4, 5]
+
+resultado = list(map(quadrado, numeros))
+                 
+"""
+filter
+"""
+
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+resultado = list(filter(lambda x: x%2 == 0, numeros))
+
+
+"""
+Crie uma lista de quadrados para todos os números pares de uma lista de 1 a 20.
+"""
+
+resultado = [x**2 for x in range(1, 21) if x %2 == 0 ]
+
+
+"""
+Dada uma lista de palavras, crie uma lista com as palavras que começam com uma letra maiúscula.
+
+python
+"""
+
+palavras = ["Casa", "sol", "Lago", "cachorro", "Árvore"]
+
+resultado = [palavra for palavra in palavras if palavra[0].isupper()]
+
+print(f'Resultado: {resultado}')
