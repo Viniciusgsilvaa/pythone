@@ -1,5 +1,6 @@
-from typing import Any
-from django.views.generic import TemplateView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import TemplateView, CreateView, View
 from .models import Post
 from .form import PostForm
 from django.urls import reverse_lazy
@@ -19,4 +20,18 @@ class CreatePostView(CreateView):
     form_class = PostForm
     template_name = 'criar_post.html'
     success_url = reverse_lazy('lista_postagens')
+
+
+class VotarPostView(LoginRequiredMixin, View):
+
+    def post(self, request, post_id, tipo_voto):
+        # Buscar o post pelo ID, ou retornar 404 se não encontrar
+        post = get_object_or_404(Post, id=post_id)
+
+        # Verificar se o tipo de voto é válido (like ou dislike)
+        if tipo_voto in ['like', 'dislike']:
+            post.adicionar_voto(request.user, tipo_voto)  # Função existente no modelo Post
+
+        # Redirecionar para a página de detalhes do post
+        return redirect('detalhes_post', id=post.id)
     

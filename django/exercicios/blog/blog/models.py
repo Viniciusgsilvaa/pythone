@@ -29,6 +29,41 @@ class Comentario(Base):
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
 
+    def adicionar_voto(self, usuario, tipo_voto):
+        # Verificar se o usuário já votou no comentário
+        voto_existente = VotoComentario.objects.filter(comentario=self, usuario=usuario).first()
+
+        if voto_existente:
+            # Se o usuário já votou e o voto for igual ao atual, remova o voto
+            if voto_existente.tipo_voto == tipo_voto:
+                voto_existente.delete()
+                if tipo_voto == 'like':
+                    self.likes -= 1
+                else:
+                    self.dislikes -= 1
+            # Se o voto for diferente, atualize o tipo de voto
+            else:
+                if voto_existente.tipo_voto == 'like':
+                    self.likes -= 1
+                    self.dislikes += 1
+                else:
+                    self.likes += 1
+                    self.dislikes -= 1
+                voto_existente.tipo_voto = tipo_voto
+                voto_existente.save()
+        else:
+
+            VotoComentario.objects.create(comentario=self, usuario=usuario, tipo_voto=tipo_voto)
+            if tipo_voto == 'like':
+                self.likes += 1
+            else:
+                self.dislikes += 1
+            
+
+        self.save()
+        
+
+
     def __str__(self):
         return f'Comentário de {self.usuario} no post {self.post.titulo}' 
 
@@ -70,3 +105,7 @@ class Seguidor(Base):
     
     def __str__(self):
         return self.usuario.username
+
+
+
+
