@@ -17,10 +17,56 @@ class Post(Base):
     nome = models.CharField('Nome', max_length=200)
     titulo = models.CharField('Titulo', max_length=100)
     conteudo = models.TextField()
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
+
+    def adicionar_voto(self, usuario, tipo_voto):
+        # Verificar se o usuário já votou nesse post
+        voto_existente = VotoPost.objects.filter(post=self, usuario=usuario).first()
+
+        if voto_existente:
+            # Se o usuário já votou e o tipo de voto é o mesmo, remova o voto
+            if voto_existente.tipo_voto == tipo_voto:
+                voto_existente.delete()
+                if tipo_voto == 'like':
+                    self.likes -= 1
+                else:
+                    self.dislikes -= 1
+            # Se o voto for diferente, troque o tipo de voto
+            else:
+                if voto_existente.tipo_voto == 'like':
+                    self.likes -= 1
+                    self.dislikes += 1
+                else:
+                    self.likes += 1
+                    self.dislikes -= 1
+                voto_existente.tipo_voto = tipo_voto
+                voto_existente.save()
+        else:
+            # Se não houver voto, crie um novo
+            VotoPost.objects.create(post=self, usuario=usuario, tipo_voto=tipo_voto)
+            if tipo_voto == 'like':
+                self.likes += 1
+            else:
+                self.dislikes += 1
+
+        # Salvar as mudanças no post
+        self.save()
 
     def __str__(self):
         return self.nome
+    
 
+class VotoPost(Base):
+    post = models.ForeignKey(Post, related_name='votos', on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    tipo_voto = models.CharField(max_length=10, choices=[('like', 'Like'), ('dislike', 'Dislike')])
+
+    class Meta:
+        unique_together = ('post', 'usuario')  # Cada usuário pode votar apenas uma vez em cada post
+
+    def __str__(self):
+        return f'{self.usuario} - {self.tipo_voto} - {self.post.titulo}'
 
 class Comentario(Base):
     post = models.ForeignKey(Post,  related_name='comentarios', on_delete=models.CASCADE)

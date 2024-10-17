@@ -4,27 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Postagens</title>
 </head>
 <body>
     <h1>Postagens</h1>
     <ul>
-        <!-- Usar 'postagens' no loop -->
         {% for p in postagens %}
             <li>
                 <strong>Nome:</strong> {{ p.nome }} <br>
                 <strong>Título:</strong> {{ p.titulo }} <br>
                 <strong>Conteúdo:</strong> {{ p.conteudo }} <br>
-                <h1></h1>
+
+                <!-- Seção de Likes e Dislikes do Post -->
+                <p><strong>Likes:</strong> {{ p.likes }} | <strong>Dislikes:</strong> {{ p.dislikes }}</p>
+
+                <!-- Botões de "Like" e "Dislike" para o Post -->
+                <form method="post" action="{% url 'votar_post' p.id 'like' %}">
+                    {% csrf_token %}
+                    <button type="submit">Like</button>
+                </form>
+
+                <form method="post" action="{% url 'votar_post' p.id 'dislike' %}">
+                    {% csrf_token %}
+                    <button type="submit">Dislike</button>
+                </form>
+
+                <!-- Seção de Comentários -->
+                <h3>Comentários</h3>
+                <ul>
+                    {% for comentario in p.comentarios.all %}
+                        <li>
+                            <strong>{{ comentario.usuario.username }}:</strong> {{ comentario.texto }} <br>
+                            <strong>Likes:</strong> {{ comentario.likes }} | <strong>Dislikes:</strong> {{ comentario.dislikes }}
+                            
+                            <!-- Botões de "Like" e "Dislike" para o Comentário -->
+                            <form method="post" action="{% url 'votar_comentario' comentario.id 'like' %}">
+                                {% csrf_token %}
+                                <button type="submit">Like</button>
+                            </form>
+
+                            <form method="post" action="{% url 'votar_comentario' comentario.id 'dislike' %}">
+                                {% csrf_token %}
+                                <button type="submit">Dislike</button>
+                            </form>
+
+                            <!-- Exibir form para resposta ao comentário (opcional) -->
+                            <form method="post" action="{% url 'comentar' p.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="parent_comentario_id" value="{{ comentario.id }}">
+                                <textarea name="texto" placeholder="Responda ao comentário"></textarea>
+                                <button type="submit">Responder</button>
+                            </form>
+
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- Formulário para Adicionar um Novo Comentário -->
+                <h3>Adicionar Comentário</h3>
+                <form method="post" action="{% url 'comentar' p.id %}">
+                    {% csrf_token %}
+                    <textarea name="texto" placeholder="Escreva seu comentário"></textarea>
+                    <button type="submit">Comentar</button>
+                </form>
+
             </li>
         {% endfor %}
     </ul>
-
-    <h1>Criar nova postagem</h1>
-    <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
-    </form>
 </body>
 </html>
