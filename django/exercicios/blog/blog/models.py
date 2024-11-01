@@ -11,7 +11,7 @@ class Base(models.Model):
     class Meta:
         abstract = True
 
-
+''
 class Post(Base):
     
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
