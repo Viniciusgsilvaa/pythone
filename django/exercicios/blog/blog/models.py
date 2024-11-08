@@ -54,6 +54,8 @@ class Post(Base):
         # Salvar as mudanças no post
         self.save()
 
+        perfil = Perfil.objects.get(usuario=self.usuario)
+        perfil.atualizar_reputacao()
     def __str__(self):
         return self.nome
     
@@ -135,10 +137,11 @@ class Perfil(Base):
     localizacao = models.CharField(max_length=100)
     data_nascimento = models.DateField()
     reputacao = models.IntegerField(default=0)
+    sexo = models.CharField(max_length=100, choices=[("M", "Masculino"), ("F", "Feminino")], null=True, blank=True)
 
     def atualizar_reputacao(self):
-        respostas = self.usuario.respostas.all()
-        reputacao = sum([resposta.votos_positivos - resposta.voto_negativo for resposta in respostas])
+        posts = Post.objects.filter(usuario=self.usuario)
+        reputacao = sum([post.likes - post.dislikes for post in posts])
         self.reputacao = reputacao
         self.save()
 
@@ -166,15 +169,18 @@ class Seguidor(Base):
 
 class Pergunta(Base):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    titulo = models.CharField(max_length=200)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='perguntas', null=True)
     descricao = models.TextField()
-    melhor_resposta = models.OneToOneField(
+    """melhor_resposta = models.OneToOneField(
         'Resposta', null=True, blank=True, on_delete=models.SET_NULL,
         related_name='melhor_resposta_da_pergunta'
-    )
+    )"""
 
     def __str__(self):
-        return self.usuario.titulo
+        return self.usuario.username
+    
+    def get_conteudo_post(self):
+        return self.post.conteudo
 
 
 class Resposta(Base):
@@ -218,7 +224,7 @@ class Resposta(Base):
         self.usuario.profile.atualizar_reputacao()
 
     def __str__(self):
-        return f'Resposta de {self.usuario.username} para "{self.pergunta.titulo}"'
+        return f'Resposta de {self.usuario.username} para "{self.pergunta.descricao}"'
 
 
 class VotoResposta(Base):
@@ -232,4 +238,4 @@ class VotoResposta(Base):
     
 
     def __str__(self):
-        return f'Voto de {self.usuario.username} na resposta {self.resposta.id}'
+        return f'Voto de {self.usuario.username} na resposta {self.respostas.pergunta.descricao}'
